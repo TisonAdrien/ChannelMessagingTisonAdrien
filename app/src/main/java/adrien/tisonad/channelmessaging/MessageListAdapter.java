@@ -48,6 +48,8 @@ public class MessageListAdapter extends ArrayAdapter<Message> {
         if(message.getMessageImageUrl().equals("")){
             TextView txt = (TextView) convertView.findViewById(R.id.textViewMessage);
             txt.setText(message.getMessage());
+            ImageView emptyImage = (ImageView) convertView.findViewById(R.id.imageViewImageMessage);
+            emptyImage.setVisibility(View.INVISIBLE);
         } else{
             ImageView messageImage = (ImageView) convertView.findViewById(R.id.imageViewImageMessage);
 
