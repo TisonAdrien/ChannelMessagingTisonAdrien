@@ -37,6 +37,13 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="271dp"
+        android:id="@+id/imageViewImageMessage"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_gravity="center_horizontal" />
     <TextView
         android:layout_width="358dp"
         android:layout_height="wrap_content"

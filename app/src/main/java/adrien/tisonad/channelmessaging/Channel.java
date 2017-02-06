@@ -15,6 +15,8 @@ public class Channel {
                 name + "\', connectedusers=" + connectedusers + '}';
     }
 
+
+
     public Channel(String connectedusers, String name, int channelID) {
         this.connectedusers = connectedusers;
         this.name = name;

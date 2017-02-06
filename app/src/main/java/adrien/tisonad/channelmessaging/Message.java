@@ -1,12 +1,22 @@
 package adrien.tisonad.channelmessaging;
 
+import java.net.URI;
+
 /**
  * Created by tisonad on 27/01/2017.
  */
 public class Message {
     private int userID;
     private String username;
+    private String messageImageUrl;
 
+    public String getMessageImageUrl() {
+        return messageImageUrl;
+    }
+
+    public void setMessageImageUrl(String messageImageUrl) {
+        this.messageImageUrl = messageImageUrl;
+    }
     public String getUsername() {
         return username;
     }
@@ -22,14 +32,16 @@ public class Message {
                 ", message='" + message + '\'' +
                 ", date='" + date + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
+                ", messageImageUrl='" + messageImageUrl + '\'' +
                 '}';
     }
 
-    public Message(int userID, String message, String date, String imageUrl) {
+    public Message(int userID, String message, String date, String imageUrl,String messageImageUrl) {
         this.userID = userID;
         this.message = message;
         this.date = date;
         this.imageUrl = imageUrl;
+        this.messageImageUrl = messageImageUrl;
     }
 
     public int getUserID() {

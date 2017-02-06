@@ -45,6 +45,19 @@ public class MessageListAdapter extends ArrayAdapter<Message> {
             new DownloadImageTask(avatar).execute(message.getImageUrl());
         }
 
+        if(message.getMessageImageUrl().equals("")){
+            TextView txt = (TextView) convertView.findViewById(R.id.textViewMessage);
+            txt.setText(message.getMessage());
+        } else{
+            ImageView messageImage = (ImageView) convertView.findViewById(R.id.imageViewImageMessage);
+
+            if(ChannelActivity.images.containsKey(message.getMessageImageUrl())){
+                messageImage.setImageBitmap(ChannelActivity.images.get(message.getMessageImageUrl()));
+            }else{
+                new DownloadImageTask(messageImage).execute(message.getMessageImageUrl());
+            }
+        }
+
         return convertView;
     }
 }
