@@ -62,6 +62,19 @@ public class UserDataSource {
         ami.setImageUrl(cursor.getString(2));
         return ami;
     }
+    public List<Friend> getAllFriends() {
+        List<Friend> lesFriends = new ArrayList<Friend>();
+        Cursor cursor = database.query(FriendsDB.FRIEND_TABLE_NAME, allColumns, null, null, null, null, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Friend unFriend = cursorToFriend(cursor);
+            lesFriends.add(unFriend);
+            cursor.moveToNext();
+        }
+        // make sure to close the cursor
+        cursor.close();
+        return lesFriends;
+    }
     public void deleteHomme(Friend unFriend) {
         UUID id = unFriend.getUserID();
         database.delete(FriendsDB.FRIEND_TABLE_NAME, FriendsDB.KEY_ID + " = \"" + id.toString()+"\"", null);
