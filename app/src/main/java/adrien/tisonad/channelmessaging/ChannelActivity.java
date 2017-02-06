@@ -83,11 +83,11 @@ public class ChannelActivity extends AppCompatActivity {
                     }
                 });
 
-                handler.postDelayed(this, 10000);
+                handler.postDelayed(this, 5000);
             }
         };
 
-        handler.postDelayed(r, 10000);
+        handler.postDelayed(r, 1000);
 
 
 

@@ -49,10 +49,10 @@ public class MessageListAdapter extends ArrayAdapter<Message> {
             TextView txt = (TextView) convertView.findViewById(R.id.textViewMessage);
             txt.setText(message.getMessage());
             ImageView emptyImage = (ImageView) convertView.findViewById(R.id.imageViewImageMessage);
-            emptyImage.setVisibility(View.INVISIBLE);
+            emptyImage.setVisibility(View.GONE);
         } else{
             ImageView messageImage = (ImageView) convertView.findViewById(R.id.imageViewImageMessage);
-
+            messageImage.setVisibility(View.VISIBLE);
             if(ChannelActivity.images.containsKey(message.getMessageImageUrl())){
                 messageImage.setImageBitmap(ChannelActivity.images.get(message.getMessageImageUrl()));
             }else{
