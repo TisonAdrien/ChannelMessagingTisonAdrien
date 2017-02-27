@@ -65,7 +65,7 @@ public class MessageFragment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_channel);
+        setContentView(R.layout.message_fragment);
 
         messages = (ListView) findViewById(R.id.listViewMessages);
         myMessage = (EditText) findViewById(R.id.editTextMessage);
