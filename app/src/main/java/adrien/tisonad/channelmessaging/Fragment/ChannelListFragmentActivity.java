@@ -1,4 +1,4 @@
-package adrien.tisonad.channelmessaging;
+package adrien.tisonad.channelmessaging.Fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +12,16 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
+
+import adrien.tisonad.channelmessaging.Channel;
+import adrien.tisonad.channelmessaging.ChannelActivity;
+import adrien.tisonad.channelmessaging.ChannelArrayAdapter;
+import adrien.tisonad.channelmessaging.ChannelsContainer;
+import adrien.tisonad.channelmessaging.Downloader;
+import adrien.tisonad.channelmessaging.FriendsActivity;
+import adrien.tisonad.channelmessaging.LoginActivity;
+import adrien.tisonad.channelmessaging.OnDownloadCompleteListener;
+import adrien.tisonad.channelmessaging.R;
 
 public class ChannelListFragmentActivity extends AppCompatActivity {
     private ListView channels;
