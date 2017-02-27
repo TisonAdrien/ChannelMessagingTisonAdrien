@@ -58,7 +58,7 @@ public class ChannelListFragmentActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Channel channel = (Channel) channels.getItemAtPosition(position);
-                Intent intent = new Intent(getApplicationContext(), ChannelActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MessageFragment.class);
                 intent.putExtra("channelid", Integer.toString(channel.getChannelID()));
                 startActivity(intent);
             }
