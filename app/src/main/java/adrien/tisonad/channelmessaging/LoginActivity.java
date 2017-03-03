@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity implements OnDownloadComple
     private EditText identifiant;
     private EditText password;
     private Button boutonValider;
+    private ImageView logoView;
     public static final String PREFS_NAME = "PrefsFiles";
 
     @Override
@@ -47,6 +48,7 @@ public class LoginActivity extends AppCompatActivity implements OnDownloadComple
         boutonValider.setOnClickListener(this);
         identifiant = (EditText) findViewById(R.id.Identifiant);
         password = (EditText) findViewById(R.id.Password);
+        logoView = (ImageView) findViewById(R.id.logoView);
     }
 
     @Override
