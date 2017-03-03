@@ -17,7 +17,7 @@
     <ImageView
         android:layout_width="256dp"
         android:layout_height="121dp"
-        android:id="@+id/imageView"
+        android:id="@+id/logoView"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/channel_messaging_logo"
         android:layout_weight="0.31" />
@@ -43,6 +43,7 @@
                 android:layout_width="356dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/Identifiant"
+                android:textColor="@color/silver"
                 android:layout_alignLeft="@+id/Password"
                 android:layout_alignStart="@+id/Password"
                 android:layout_alignRight="@+id/Password"
@@ -73,12 +74,13 @@
                 android:inputType="textPassword"
                 android:ems="10"
                 android:id="@+id/Password"
+                android:textColor="@color/silver"
                 android:layout_alignBottom="@+id/textView2"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
     </android.support.design.widget.TextInputLayout>
     <Button
-        android:layout_width="358dp"
+        android:layout_width="364dp"
         android:layout_height="wrap_content"
         android:text="Valider"
         android:id="@+id/buttonValider"
@@ -86,7 +88,8 @@
         android:background="@color/lime"
         android:textColor="@color/white"
         android:layout_centerHorizontal="true"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="wrap_content"
