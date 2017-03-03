@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "adrien.tisonad.channelmessaging"
-        minSdkVersion 13
+        minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -26,4 +26,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+    // Support lib for material design
+    compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support:design:25.2.0'
 }
