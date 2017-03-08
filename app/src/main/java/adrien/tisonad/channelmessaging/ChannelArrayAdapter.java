@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import adrien.tisonad.channelmessaging.Channel;
+import adrien.tisonad.channelmessaging.R;
+
 /**
  * Created by tisonad on 27/01/2017.
  */

@@ -1,6 +1,7 @@
 package adrien.tisonad.channelmessaging;
 
 import android.app.ActivityOptions;
+import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
+
+import adrien.tisonad.channelmessaging.Fragment.MainActivity;
 
 public class LoginActivity extends AppCompatActivity implements OnDownloadCompleteListener, View.OnClickListener{
 
@@ -74,8 +77,11 @@ public class LoginActivity extends AppCompatActivity implements OnDownloadComple
 
                     editor.commit();
 
+
                     Intent myIntent = new Intent(getApplicationContext(),ChannelListActivity.class);
                     startActivity(myIntent, ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, logoView, "logo").toBundle());
+                    //Intent myIntent = new Intent(getApplicationContext(),MainActivity.class);
+                    //startActivity(myIntent);
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Erreur de connexion", Toast.LENGTH_SHORT).show();

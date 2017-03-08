@@ -1,15 +1,12 @@
 package adrien.tisonad.channelmessaging.Fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -29,7 +26,6 @@ import adrien.tisonad.channelmessaging.R;
  */
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private ListView channels;
-    private Fragment frag = new Fragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -49,31 +45,47 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 public void onDownloadComplete(String content) {
                     Gson gson = new Gson();
                     ChannelsContainer obj = gson.fromJson(content, ChannelsContainer.class);
-
                     channels.setAdapter((new ChannelArrayAdapter(getApplicationContext(), obj.getChannels())));
                 }
             });
-            if(savedInstanceState != null)
-            {
-                frag.setArguments(getIntent().getExtras());
-            }
+
+            channels.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Fragment fragA = (Fragment)getSupportFragmentManager().findFragmentById(R.id.fragmentA_ID);
+                    Fragment fragB = (Fragment)getSupportFragmentManager().findFragmentById(R.id.fragmentB_ID);
+                    Channel channel = (Channel) channels.getItemAtPosition(position);
+                    String channelid = Integer.toString(channel.getChannelID());
+
+                    if(fragB == null|| !fragB.isInLayout()){
+                        Intent i = new Intent(getApplicationContext(),MessageFragment.class);
+                        i.putExtra("channelid", channelid);
+                        startActivity(i);
+                    } else {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("channelid", channelid);
+                        fragB.setArguments(bundle);
+                    }
+                }
+            });
+
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Fragment fragA = (Fragment)getSupportFragmentManager().findFragmentById(R.id.fragmentA_ID);
-            Fragment fragB = (Fragment)getSupportFragmentManager().findFragmentById(R.id.fragmentB_ID);
-            Channel channel = (Channel) channels.getItemAtPosition(position);
-            String channelid = Integer.toString(channel.getChannelID());
+        Fragment fragA = (Fragment)getSupportFragmentManager().findFragmentById(R.id.fragmentA_ID);
+        Fragment fragB = (Fragment)getSupportFragmentManager().findFragmentById(R.id.fragmentB_ID);
+        Channel channel = (Channel) channels.getItemAtPosition(position);
+        String channelid = Integer.toString(channel.getChannelID());
 
-            if(fragB == null|| !fragB.isInLayout()){
-                Intent i = new Intent(getApplicationContext(),MessageFragment.class);
-                i.putExtra("channelid", channelid);
-                startActivity(i);
-            } else {
-                Bundle bundle = new Bundle();
-                bundle.putString("channelid", channelid);
-                fragB.setArguments(bundle);
-            }
+        if(fragB == null|| !fragB.isInLayout()){
+            Intent i = new Intent(getApplicationContext(),MessageFragment.class);
+            i.putExtra("channelid", channelid);
+            startActivity(i);
+        } else {
+            Bundle bundle = new Bundle();
+            bundle.putString("channelid", channelid);
+            fragB.setArguments(bundle);
+        }
     }
 }
