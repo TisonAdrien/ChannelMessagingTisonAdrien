@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             channels.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Fragment fragA = (Fragment)getSupportFragmentManager().findFragmentById(R.id.fragmentA_ID);
-                    Fragment fragB = (Fragment)getSupportFragmentManager().findFragmentById(R.id.fragmentB_ID);
+                    ChannelListFragmentActivity fragA = (ChannelListFragmentActivity)getSupportFragmentManager().findFragmentById(R.id.fragmentA_ID);
+                    MessageFragment fragB = (MessageFragment)getFragmentManager().findFragmentById(R.id.fragmentB_ID);
                     Channel channel = (Channel) channels.getItemAtPosition(position);
                     String channelid = Integer.toString(channel.getChannelID());
 
