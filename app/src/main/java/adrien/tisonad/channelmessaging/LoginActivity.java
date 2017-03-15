@@ -4,6 +4,7 @@ import android.app.ActivityOptions;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.gson.Gson;
 
 import java.io.BufferedInputStream;
@@ -42,6 +45,8 @@ public class LoginActivity extends AppCompatActivity implements OnDownloadComple
     private Button boutonValider;
     private ImageView logoView;
     public static final String PREFS_NAME = "PrefsFiles";
+    Handler mHandlerTada = new Handler(); // android.os.handler
+    int mShortDelay = 4000; //milliseconds
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,15 @@ public class LoginActivity extends AppCompatActivity implements OnDownloadComple
         identifiant = (EditText) findViewById(R.id.Identifiant);
         password = (EditText) findViewById(R.id.Password);
         logoView = (ImageView) findViewById(R.id.logoView);
+
+        mHandlerTada.postDelayed(new Runnable(){
+            public void run(){
+                YoYo.with(Techniques.Tada)
+                        .duration(1200)
+                        .playOn(logoView);
+                mHandlerTada.postDelayed(this, mShortDelay);
+            }
+        }, mShortDelay);
     }
 
     @Override
