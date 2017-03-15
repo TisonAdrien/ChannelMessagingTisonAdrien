@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -48,6 +50,7 @@ public class LoginActivity extends AppCompatActivity implements OnDownloadComple
     Handler mHandlerTada = new Handler(); // android.os.handler
     int mShortDelay = 4000; //milliseconds
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +73,8 @@ public class LoginActivity extends AppCompatActivity implements OnDownloadComple
 
     @Override
     public void onClick(View v) {
+        Animation animSlideLeft = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+        findViewById(R.id.textView4).startAnimation(animSlideLeft);
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("username",identifiant.getText().toString());
         params.put("password",password.getText().toString());
@@ -84,7 +89,7 @@ public class LoginActivity extends AppCompatActivity implements OnDownloadComple
 
                 if(obj.getResponse().equals("Ok")){
                     Toast.makeText(getApplicationContext(), "Connecté", Toast.LENGTH_SHORT).show();
-
+                    findViewById(R.id.textView4).clearAnimation();
                     SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
                     SharedPreferences.Editor editor = settings.edit();
                     editor.putString("accesstoken", obj.getAccesstoken());
@@ -99,6 +104,7 @@ public class LoginActivity extends AppCompatActivity implements OnDownloadComple
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Erreur de connexion", Toast.LENGTH_SHORT).show();
+                    findViewById(R.id.textView4).clearAnimation();
                 }
             }
         });
