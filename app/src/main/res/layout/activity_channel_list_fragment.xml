@@ -13,12 +13,4 @@
         android:id="@+id/fragmentA_ID"
         android:name="com.google.android.gms.internal.zzlp"
         tools:layout="@layout/channel_list_fragment" />
-    <fragment
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="3"
-        android:id="@+id/fragmentB_ID"
-        android:layout_gravity="center_vertical"
-        android:name="com.google.android.gms.internal.zzlp"
-        tools:layout="@layout/message_fragment" />
 </LinearLayout>
