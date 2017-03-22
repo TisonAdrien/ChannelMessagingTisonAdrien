@@ -24,7 +24,7 @@ public class ChannelListActivity extends AppCompatActivity{
     private Button btnFriends;
     private ImageView logoView;
     public Handler mHandlerLogo = new Handler();
-    int mShortDelay = 4000; //milliseconds
+    int mShortDelay = 6000; //milliseconds
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class ChannelListActivity extends AppCompatActivity{
 
         mHandlerLogo.postDelayed(new Runnable(){
             public void run(){
-                YoYo.with(Techniques.Pulse)
+                YoYo.with(Techniques.Wobble)
                         .duration(1200)
                         .playOn(logoView);
                 mHandlerLogo.postDelayed(this, mShortDelay);
