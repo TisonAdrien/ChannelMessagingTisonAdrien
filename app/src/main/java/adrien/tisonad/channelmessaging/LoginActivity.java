@@ -59,9 +59,19 @@ public class LoginActivity extends AppCompatActivity implements OnDownloadComple
     int mShortDelay = 4000; //milliseconds
     private static final String[] explainStringArray = {
             "Connecte toi pour chatter avec tes amis",
-            "Blablabla",
             "C'est moi Sancho le Cubain !",
-            "Voilà..."
+            "Space",
+            "Alleluja",
+            "Deus Vult",
+            "May the force be with you",
+            "Sa vision est basée sur le mouvement",
+            "Attrapez les tous !",
+            "C'est l'heure dudududu DUEL",
+            "Wingardium Leviosa",
+            "You shall not pass",
+            "Winter is coming",
+            "2,21 Gigawatts !!!",
+            "I'm lovin'it"
     };
     private TextView textAnim;
 
