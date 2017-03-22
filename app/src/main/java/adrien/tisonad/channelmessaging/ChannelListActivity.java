@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
+import com.dynamitechetan.flowinggradient.FlowingGradientClass;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -21,6 +23,13 @@ public class ChannelListActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_channel_list);
+
+        RelativeLayout rl = (RelativeLayout) findViewById(R.id.rlBackground);
+        FlowingGradientClass grad = new FlowingGradientClass();
+        grad.setBackgroundResource(R.drawable.translate)
+                .onRelativeLayout(rl)
+                .setTransitionDuration(4000)
+                .start();
 
         channels = (ListView) findViewById(R.id.listViewChannels);
         btnFriends = (Button) findViewById(R.id.buttonFriends);
