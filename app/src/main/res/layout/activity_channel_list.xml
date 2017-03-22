@@ -27,6 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mes amis"
+        android:background="@color/lime"
+        android:textColor="@color/white"
         android:id="@+id/buttonFriends"
         android:layout_below="@+id/logoView"
         android:layout_centerHorizontal="true" />
