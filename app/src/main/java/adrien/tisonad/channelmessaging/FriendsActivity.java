@@ -33,10 +33,6 @@ public class FriendsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final Friend friend = (Friend) friends.getItemAtPosition(position);
-
-                //Intent intent = new Intent(getApplicationContext(), PrivateChannelActivity.class);
-                //intent.putExtra("friendid", Integer.toString(friend.getUserID()));
-                //startActivity(intent);
             }
         });
     }

@@ -3,8 +3,11 @@ package adrien.tisonad.channelmessaging;
 import android.animation.Animator;
 import android.app.ActivityOptions;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -123,46 +126,59 @@ public class LoginActivity extends AppCompatActivity implements OnDownloadComple
 
     }
 
+    private boolean haveInternetConnection(){
+        NetworkInfo network = ((ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+
+        if (network==null || !network.isConnected()) {
+            Snackbar.make(findViewById(R.id.buttonValider), "Veuillez tout d'abord vous connecter à internet", Snackbar.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public void onClick(View v) {
-        Animation animSlideLeft = AnimationUtils.loadAnimation(this, R.anim.slide_left);
-        findViewById(R.id.textView4).startAnimation(animSlideLeft);
-        HashMap<String, String> params = new HashMap<String, String>();
-        params.put("username",identifiant.getText().toString());
-        params.put("password",password.getText().toString());
+        if(this.haveInternetConnection()) {
+            Animation animSlideLeft = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+            findViewById(R.id.textView4).startAnimation(animSlideLeft);
 
-        Downloader connexion = new Downloader(getApplicationContext(), params, "http://www.raphaelbischof.fr/messaging/?function=connect");
+            HashMap<String, String> params = new HashMap<String, String>();
+            params.put("username", identifiant.getText().toString());
+            params.put("password", password.getText().toString());
 
-        connexion.setListener(new OnDownloadCompleteListener() {
-            @Override
-            public void onDownloadComplete(String content) {
-                Gson gson = new Gson();
-                ConnectionReturn obj = gson.fromJson(content, ConnectionReturn.class);
+            Downloader connexion = new Downloader(getApplicationContext(), params, "http://www.raphaelbischof.fr/messaging/?function=connect");
 
-                if(obj.getResponse().equals("Ok")){
-                    Snackbar.make(findViewById(R.id.buttonValider), "Connecté", Snackbar.LENGTH_LONG).show();
-                    findViewById(R.id.textView4).clearAnimation();
-                    SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-                    SharedPreferences.Editor editor = settings.edit();
-                    editor.putString("accesstoken", obj.getAccesstoken());
+            connexion.setListener(new OnDownloadCompleteListener() {
+                @Override
+                public void onDownloadComplete(String content) {
+                    Gson gson = new Gson();
+                    ConnectionReturn obj = gson.fromJson(content, ConnectionReturn.class);
 
-                    editor.commit();
+                    if (obj.getResponse().equals("Ok")) {
+                        Snackbar.make(findViewById(R.id.buttonValider), "Connecté", Snackbar.LENGTH_LONG).show();
+                        findViewById(R.id.textView4).clearAnimation();
+                        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putString("accesstoken", obj.getAccesstoken());
+
+                        editor.commit();
 
 
-                    Intent myIntent = new Intent(getApplicationContext(),ChannelListActivity.class);
-                    startActivity(myIntent, ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, logoView, "logo").toBundle());
-                    //Intent myIntent = new Intent(getApplicationContext(),MainActivity.class);
-                    //startActivity(myIntent);
+                        Intent myIntent = new Intent(getApplicationContext(), ChannelListActivity.class);
+                        startActivity(myIntent, ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, logoView, "logo").toBundle());
+                        //Intent myIntent = new Intent(getApplicationContext(),MainActivity.class);
+                        //startActivity(myIntent);
+                    } else {
+                        Snackbar.make(findViewById(R.id.buttonValider), "Erreur de connection", Snackbar.LENGTH_LONG).show();
+                        findViewById(R.id.textView4).clearAnimation();
+                    }
                 }
-                else{
-                    Snackbar.make(findViewById(R.id.buttonValider), "Erreur de connection", Snackbar.LENGTH_LONG).show();
-                    findViewById(R.id.textView4).clearAnimation();
-                }
-            }
-        });
-        connexion.execute();
-        Snackbar.make(findViewById(R.id.buttonValider), "Connection en cours...", Snackbar.LENGTH_LONG).show();
 
+            });
+            connexion.execute();
+            Snackbar.make(findViewById(R.id.buttonValider), "Connection en cours...", Snackbar.LENGTH_LONG).show();
+
+        }
     }
 
     @Override
